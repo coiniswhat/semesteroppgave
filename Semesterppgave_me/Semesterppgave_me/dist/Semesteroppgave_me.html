@@ -1,0 +1,45 @@
+<html><head>
+  <SCRIPT src="http://java.com/js/dtjava.js"></SCRIPT>
+<script>
+    function launchApplication(jnlpfile) {
+        dtjava.launch(            {
+                url : 'Semesteroppgave_me.jnlp',
+                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxqbmxwIHNwZWM9IjEuMCIgeG1sbnM6amZ4PSJodHRwOi8vamF2YWZ4LmNvbSIgaHJlZj0iU2VtZXN0ZXJvcHBnYXZlX21lLmpubHAiPg0KICA8aW5mb3JtYXRpb24+DQogICAgPHRpdGxlPlNlbWVzdGVyb3BwZ2F2ZV9tZTwvdGl0bGU+DQogICAgPHZlbmRvcj5BbmFzPC92ZW5kb3I+DQogICAgPGRlc2NyaXB0aW9uPm51bGw8L2Rlc2NyaXB0aW9uPg0KICAgIDxvZmZsaW5lLWFsbG93ZWQvPg0KICA8L2luZm9ybWF0aW9uPg0KICA8cmVzb3VyY2VzPg0KICAgIDxqMnNlIHZlcnNpb249IjEuNisiIGhyZWY9Imh0dHA6Ly9qYXZhLnN1bi5jb20vcHJvZHVjdHMvYXV0b2RsL2oyc2UiLz4NCiAgICA8amFyIGhyZWY9IlNlbWVzdGVyb3BwZ2F2ZV9tZS5qYXIiIHNpemU9IjE5OTY4IiBkb3dubG9hZD0iZWFnZXIiIC8+DQogIDwvcmVzb3VyY2VzPg0KICA8amZ4OmphdmFmeC1kZXNjICB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgbWFpbi1jbGFzcz0ic2VtZXN0ZXJwcGdhdmVfbWUuU2VtZXN0ZXJwcGdhdmVfbWUiICBuYW1lPSJTZW1lc3Rlcm9wcGdhdmVfbWUiIC8+DQogIDx1cGRhdGUgY2hlY2s9ImFsd2F5cyIvPg0KPC9qbmxwPg0K'
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+        return false;
+    }
+</script>
+
+<script>
+    function javafxEmbedsemesterppgave_me() {
+        dtjava.embed(
+            {
+                id : 'semesterppgave_me',
+                url : 'Semesteroppgave_me.jnlp',
+                placeholder : 'javafx-app-placeholder',
+                width : '800',
+                height : '600',
+                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxqbmxwIHNwZWM9IjEuMCIgeG1sbnM6amZ4PSJodHRwOi8vamF2YWZ4LmNvbSIgaHJlZj0iU2VtZXN0ZXJvcHBnYXZlX21lLmpubHAiPg0KICA8aW5mb3JtYXRpb24+DQogICAgPHRpdGxlPlNlbWVzdGVyb3BwZ2F2ZV9tZTwvdGl0bGU+DQogICAgPHZlbmRvcj5BbmFzPC92ZW5kb3I+DQogICAgPGRlc2NyaXB0aW9uPm51bGw8L2Rlc2NyaXB0aW9uPg0KICAgIDxvZmZsaW5lLWFsbG93ZWQvPg0KICA8L2luZm9ybWF0aW9uPg0KICA8cmVzb3VyY2VzPg0KICAgIDxqMnNlIHZlcnNpb249IjEuNisiIGhyZWY9Imh0dHA6Ly9qYXZhLnN1bi5jb20vcHJvZHVjdHMvYXV0b2RsL2oyc2UiLz4NCiAgICA8amFyIGhyZWY9IlNlbWVzdGVyb3BwZ2F2ZV9tZS5qYXIiIHNpemU9IjE5OTY4IiBkb3dubG9hZD0iZWFnZXIiIC8+DQogIDwvcmVzb3VyY2VzPg0KICA8amZ4OmphdmFmeC1kZXNjICB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgbWFpbi1jbGFzcz0ic2VtZXN0ZXJwcGdhdmVfbWUuU2VtZXN0ZXJwcGdhdmVfbWUiICBuYW1lPSJTZW1lc3Rlcm9wcGdhdmVfbWUiIC8+DQogIDx1cGRhdGUgY2hlY2s9ImFsd2F5cyIvPg0KPC9qbmxwPg0K'
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+    }
+    <!-- Embed FX application into web page once page is loaded -->
+    dtjava.addOnloadCallback(javafxEmbedsemesterppgave_me);
+</script>
+
+</head><body>
+<h2>Test page for <b>Semesteroppgave_me</b></h2>
+  <b>Webstart:</b> <a href='Semesteroppgave_me.jnlp' onclick="return launchApplication('Semesteroppgave_me.jnlp');">click to launch this app as webstart</a><br><hr><br>
+
+  <!-- Applet will be inserted here -->
+  <div id='javafx-app-placeholder'></div>
+</body></html>
