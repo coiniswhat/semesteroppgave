@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -10,67 +12,58 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="889.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="semesterppgave_me.FXMLDocumentController">
+<AnchorPane id="AnchorPane" opacity="0.56" prefHeight="720.0" prefWidth="889.0" style="-fx-background-color: #74b9ff;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Fxcontroler_kontakt_person">
     <children>
       <Label layoutX="208.0" layoutY="37.0" prefHeight="69.0" prefWidth="479.0" text="Kontakt person Registrering " textAlignment="CENTER" textFill="#2e942cdb">
          <font>
             <Font name="System Bold" size="27.0" />
          </font>
       </Label>
-      <GridPane layoutX="76.0" layoutY="163.0" prefHeight="486.0" prefWidth="419.0">
+      <GridPane layoutX="14.0" layoutY="144.0" prefHeight="357.0" prefWidth="378.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="143.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="0.0" prefWidth="182.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="117.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="81.0" minHeight="9.0" prefHeight="39.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="134.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="198.0" minHeight="10.0" prefHeight="138.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <TextField fx:id="Kontakt_Person_navn" prefHeight="46.0" prefWidth="217.0" promptText="Navn" GridPane.columnIndex="1" />
-            <Label prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: #81ecec;" text="Navn " textAlignment="CENTER" wrapText="true" />
+            <Label prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: #74b9ff;" text="Navn " textAlignment="CENTER" wrapText="true" />
             <TextField fx:id="Telefonnr" prefHeight="45.0" prefWidth="95.0" promptText="Telefonn number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label prefHeight="24.0" prefWidth="94.0" text="Telefonn nr. " GridPane.rowIndex="1" />
             <Label prefHeight="29.0" prefWidth="94.0" text="Epost" GridPane.rowIndex="2" />
             <Label prefHeight="43.0" prefWidth="97.0" text="Nettside" GridPane.rowIndex="3" />
             <TextField fx:id="nettside" prefHeight="50.0" prefWidth="95.0" promptText="Nettside" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="Firma" prefHeight="41.0" prefWidth="95.0" promptText="Firma" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="E_post" prefHeight="50.0" prefWidth="147.0" promptText="E-post" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="Firmatxt" prefHeight="41.0" prefWidth="95.0" promptText="Firma" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="E_posttxt" prefHeight="50.0" prefWidth="147.0" promptText="E-post" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label prefHeight="43.0" prefWidth="87.0" text="Firma" GridPane.rowIndex="4" />
             <Label prefHeight="61.0" prefWidth="109.0" text="Andre opplysninger" GridPane.rowIndex="5" />
-            <TextField fx:id="mer_opplysninger" prefHeight="87.0" prefWidth="219.0" promptText="Opplysninger" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="mer_opplysningertxt" prefHeight="67.0" prefWidth="208.0" promptText="Opplysninger" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <GridPane layoutX="616.0" layoutY="200.0" prefHeight="274.0" prefWidth="193.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label prefHeight="29.0" prefWidth="100.0" text="Velge arrangment" textAlignment="CENTER" />
-            <Label prefHeight="29.0" prefWidth="172.0" text="Velge sted til arrangment" textAlignment="CENTER" GridPane.rowIndex="4" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="5" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="6" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="7" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="1" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="2" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="3" />
-         </children>
-      </GridPane>
-      <Button layoutX="610.0" layoutY="599.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Register" />
-      <Button layoutX="745.0" layoutY="599.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" text="Avbryte" />
+      <Button fx:id="Registrer_id" layoutX="165.0" layoutY="637.0" mnemonicParsing="false" onAction="#Register_PERSON_ACTION" prefHeight="25.0" prefWidth="87.0" text="Register" />
+      <Button fx:id="Avbryte_id" layoutX="293.0" layoutY="637.0" mnemonicParsing="false" onAction="#Avbryte_ACTION" prefHeight="25.0" prefWidth="64.0" text="Avbryte" />
+      <Label fx:id="Kontakt_personlbl" layoutX="461.0" layoutY="527.0" prefHeight="87.0" prefWidth="284.0" />
+      <TableView fx:id="Person_view" layoutX="404.0" layoutY="128.0" prefHeight="390.0" prefWidth="471.0">
+        <columns>
+          <TableColumn fx:id="Navn_v" prefWidth="75.0" text="Navn" />
+          <TableColumn fx:id="Telefonner" prefWidth="75.0" text="Telefonner" />
+            <TableColumn fx:id="E_post" prefWidth="75.0" text="E_post" />
+            <TableColumn fx:id="nettside_v" prefWidth="75.0" text="nettside" />
+            <TableColumn fx:id="Firma" prefWidth="75.0" text="Firma" />
+            <TableColumn fx:id="opplysninger" prefWidth="95.0" text="opplysninger" />
+        </columns>
+      </TableView>
+      <Button fx:id="Legge_personId" layoutX="445.0" layoutY="637.0" mnemonicParsing="false" onAction="#Legge_person_ACTION" prefHeight="25.0" prefWidth="101.0" text="Legge person" />
+      <Button fx:id="slette_persId" layoutX="603.0" layoutY="637.0" mnemonicParsing="false" onAction="#slette_person_ACTION" prefHeight="25.0" prefWidth="100.0" text="slette person " />
+      <Button fx:id="oppdater_id" layoutX="748.0" layoutY="637.0" mnemonicParsing="false" onAction="#Åpenfile_ACTION" prefHeight="25.0" prefWidth="94.0" text="Åpen file" />
+      <RadioButton fx:id="Radio_jobj" layoutX="32.0" layoutY="629.0" mnemonicParsing="false" onAction="#radioController" text="jobj" />
+      <RadioButton fx:id="Radio_Csv" layoutX="35.0" layoutY="597.0" mnemonicParsing="false" onAction="#radioController" text="csv" />
     </children>
 </AnchorPane>

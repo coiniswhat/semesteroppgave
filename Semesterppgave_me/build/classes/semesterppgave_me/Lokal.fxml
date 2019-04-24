@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXLokal_controller">
+   <children>
+      <AnchorPane layoutX="-12.0" opacity="0.33" prefHeight="161.0" prefWidth="1220.0" style="-fx-background-color: #27ae60;">
+         <children>
+            <Label layoutX="300.0" layoutY="59.0" prefHeight="58.0" prefWidth="524.0" text="Regitstrering Lokal" textFill="#e80a0a">
+               <font>
+                  <Font size="47.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-5.0" layoutY="154.0" opacity="0.46" prefHeight="562.0" prefWidth="1211.0" style="-fx-background-color: #16a085;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="154.0">
+         <children>
+            <GridPane layoutX="110.0" layoutY="55.0" prefHeight="253.0" prefWidth="376.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="146.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="230.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="36.0" prefWidth="87.0" text="Lokal navn" textFill="#f2042c" />
+                  <Label prefHeight="30.0" prefWidth="103.0" text="Type" textFill="#f2042c" GridPane.rowIndex="1" />
+                  <Label prefHeight="38.0" prefWidth="91.0" text="Antalll plasser" textFill="#f2042c" GridPane.rowIndex="2" />
+                  <TextField fx:id="Lokal_navn" prefHeight="37.0" prefWidth="187.0" promptText="Lokal navn" GridPane.columnIndex="1" />
+                  <TextField fx:id="Type_Lokal" prefHeight="37.0" prefWidth="187.0" promptText="Type" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="Antall_plasser" prefHeight="37.0" prefWidth="187.0" promptText="Antall plasser" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <Button fx:id="Lagre_lokal" layoutX="169.0" layoutY="423.0" mnemonicParsing="false" onAction="#Lagre_lokal_til_file_Action" prefHeight="40.0" prefWidth="136.0" text="Registere" />
+            <Button fx:id="closeButton" layoutX="368.0" layoutY="424.0" mnemonicParsing="false" onAction="#Avbrytte_lokal_Action" prefHeight="38.0" prefWidth="144.0" text="Avbrytte" />
+            <Label fx:id="lblLokal" layoutX="512.0" layoutY="456.0" prefHeight="92.0" prefWidth="394.0" textFill="#e80909" />
+            <Button fx:id="legg_til_lokal" layoutX="551.0" layoutY="173.0" mnemonicParsing="false" onAction="#Legge_lokal_Action" prefHeight="30.0" prefWidth="91.0" text="legg til lokal" />
+            <Button fx:id="slette_lokal" layoutX="841.0" layoutY="405.0" mnemonicParsing="false" onAction="#Slette_lokal_Action" prefHeight="30.0" prefWidth="79.0" text="slette lokal" />
+            <RadioButton fx:id="Radio_Csv" layoutX="573.0" layoutY="257.0" mnemonicParsing="false" onAction="#radioControll" prefHeight="17.0" prefWidth="87.0" text=" csv" />
+            <RadioButton fx:id="Radio_jobj" layoutX="570.0" layoutY="308.0" mnemonicParsing="false" onAction="#radioControll" prefHeight="17.0" prefWidth="79.0" text="jobj" />
+            <TableView fx:id="lokal_view" layoutX="696.0" layoutY="46.0" prefHeight="284.0" prefWidth="448.0">
+              <columns>
+                <TableColumn fx:id="navn" prefWidth="98.0" text="navn" />
+                <TableColumn fx:id="Type" prefWidth="120.0" text="Type" />
+                  <TableColumn fx:id="antall" prefWidth="97.0" text="antall" />
+              </columns>
+            </TableView>
+            <Button fx:id="open_id" layoutX="990.0" layoutY="405.0" mnemonicParsing="false" onAction="#Åpne_file_Action" prefHeight="30.0" prefWidth="91.0" text="Åpne file" />
+            <Label layoutX="551.0" layoutY="214.0" prefHeight="30.0" prefWidth="91.0" text="Filedataformat " />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
