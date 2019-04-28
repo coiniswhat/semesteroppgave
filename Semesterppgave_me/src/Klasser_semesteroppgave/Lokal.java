@@ -49,7 +49,7 @@ public class Lokal implements Serializable {
 
     @Override
     public String toString() {
-        return Lokal_navn + " ; " + type + " ; " + Antall_plasser + "\n";
+        return Lokal_navn + ";" + type + ";" + Antall_plasser + "\n";
     }
 
 }

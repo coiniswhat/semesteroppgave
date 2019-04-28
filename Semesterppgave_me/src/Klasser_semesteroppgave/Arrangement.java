@@ -1,14 +1,6 @@
 package Klasser_semesteroppgave;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 
 public class Arrangement implements Serializable{
 
@@ -18,11 +10,11 @@ public class Arrangement implements Serializable{
     public String Artister;
     public String program_info;
     public String sted;
-    public Date tidspunkt;
+    public String tidspunkt;
     public int billett_pris;
     private String billett_salg;
 
-    public Arrangement(String kontakt_person_navn, String navn_på_arrangement, Date tidspunkt, String type, String Artister, String program_info, String sted, int billett_pris, String billett_salg) {
+    public Arrangement(String kontakt_person_navn, String navn_på_arrangement, String tidspunkt, String type, String Artister, String program_info, String sted, int billett_pris, String billett_salg) {
         this.kontakt_person_navn = kontakt_person_navn;
         this.navn_på_arrangement = navn_på_arrangement;
         this.type = type;
@@ -82,11 +74,11 @@ public class Arrangement implements Serializable{
         this.sted = sted;
     }
 
-    public Date getTidspunkt() {
+    public String getTidspunkt() {
         return tidspunkt;
     }
 
-    public void setTidspunkt(Date tidspunkt) {
+    public void setTidspunkt(String tidspunkt) {
         this.tidspunkt = tidspunkt;
     }
 
@@ -108,7 +100,7 @@ public class Arrangement implements Serializable{
 
     @Override
     public String toString() {
-        return "Arrangement{" + "kontakt_person_navn=" + kontakt_person_navn + ", navn_p\u00e5_arrangement=" + navn_på_arrangement + ", type=" + type + ", Artister=" + Artister + ", program_info=" + program_info + ", sted=" + sted + ", tidspunkt=" + tidspunkt + ", billett_pris=" + billett_pris + '}';
+        return kontakt_person_navn + ";" + navn_på_arrangement + ";" + type + ";" + Artister + ";" + program_info + ";" + sted + ";" + tidspunkt + ";" + billett_pris+";"+ billett_salg+"\n";
     }
 
 }

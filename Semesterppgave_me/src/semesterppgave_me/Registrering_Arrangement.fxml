@@ -23,7 +23,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="75.0" prefHeight="660.0" prefWidth="1246.0" style="-fx-background-color: #3D4956;">
+      <AnchorPane layoutX="-14.0" layoutY="78.0" prefHeight="660.0" prefWidth="1246.0" style="-fx-background-color: #3D4956;">
          <children>
             <GridPane layoutX="23.0" prefHeight="465.0" prefWidth="470.0">
               <columnConstraints>
@@ -73,7 +73,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="navn_på_arrangement" prefHeight="37.0" prefWidth="235.0" promptText="Navn på arrangement " GridPane.columnIndex="1" />
-                  <TextField fx:id="Tids_punkt" prefHeight="39.0" prefWidth="235.0" promptText="DD.MM.YYYY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="Tids_punkt" prefHeight="39.0" prefWidth="235.0" promptText="DD/MM/YYYY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="Billett_pris" prefHeight="40.0" prefWidth="235.0" promptText="Billett pris " GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="Billett_salg" prefHeight="37.0" prefWidth="235.0" promptText="solgte/utsolgte billetter" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="ArrtisterField" prefHeight="36.0" prefWidth="235.0" promptText="Liste på artister" GridPane.columnIndex="1" GridPane.rowIndex="6" />
@@ -100,9 +100,9 @@
             </GridPane>
             <Button fx:id="Registrer_id" layoutX="160.0" layoutY="547.0" mnemonicParsing="false" onAction="#Arrangment_Action" prefHeight="35.0" prefWidth="153.0" text="Registrer" />
             <Button fx:id="Avbryte_id" layoutX="369.0" layoutY="547.0" mnemonicParsing="false" onAction="#Slette_Data" prefHeight="34.0" prefWidth="140.0" text="Avbryte" />
-            <Label fx:id="lblTxt_Arrangment" layoutX="558.0" layoutY="445.0" prefHeight="66.0" prefWidth="327.0" textFill="#0ecf75" />
-            <RadioButton fx:id="Radio_Csv" layoutX="31.0" layoutY="509.0" mnemonicParsing="false" onAction="#radioController" prefHeight="17.0" prefWidth="114.0" text="lagre til csv" textFill="#17d3a7" />
-            <RadioButton fx:id="Radio_jobj" layoutX="160.0" layoutY="509.0" mnemonicParsing="false" onAction="#radioController" prefHeight="17.0" prefWidth="114.0" text="lagre til jobj" textFill="#17d3a7" />
+            <Label fx:id="lblTxt_Arrangment" layoutX="558.0" layoutY="445.0" prefHeight="66.0" prefWidth="401.0" textFill="#0ecf75" />
+            <RadioButton fx:id="Radio_Csv" layoutX="31.0" layoutY="509.0" mnemonicParsing="false" onAction="#radioController" prefHeight="17.0" prefWidth="114.0" text="csv" textFill="#17d3a7" />
+            <RadioButton fx:id="Radio_jobj" layoutX="160.0" layoutY="509.0" mnemonicParsing="false" onAction="#radioController" prefHeight="17.0" prefWidth="114.0" text=" jobj" textFill="#17d3a7" />
             <Button fx:id="oppdater_id" layoutX="954.0" layoutY="532.0" mnemonicParsing="false" onAction="#Åpen_file_Action" prefHeight="32.0" prefWidth="124.0" text="oppdatere file" />
             <TableView fx:id="Arrang_view" layoutX="515.0" layoutY="14.0" prefHeight="417.0" prefWidth="729.0">
               <columns>
@@ -119,6 +119,7 @@
             </TableView>
             <Button fx:id="legg_id" layoutX="672.0" layoutY="532.0" mnemonicParsing="false" onAction="#Legg_Arrangement_Action" prefHeight="32.0" prefWidth="132.0" text="Legge til Arrangment " />
             <Button fx:id="slette_v" layoutX="837.0" layoutY="533.0" mnemonicParsing="false" onAction="#slette_v_Action" prefHeight="30.0" prefWidth="96.0" text="Slette " />
+            <Label layoutX="26.0" layoutY="478.0" prefHeight="24.0" prefWidth="124.0" text="Datafileformat " textFill="#17d052" />
          </children>
       </AnchorPane>
    </children>

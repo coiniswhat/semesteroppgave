@@ -134,6 +134,7 @@ public class fx_contoller_billett implements Initializable {
 
     @FXML
     void Legge_billett_Action(ActionEvent event) throws ParseException {
+        
         if (!navntxt.getText().isEmpty() && !teletxt.getText().isEmpty() && !eposttxt.getText().isEmpty()
                 && !kloktxt.getText().isEmpty() && !pristxt.getText().isEmpty() && !passtxt.getText().isEmpty()
                 && !datotxt.getText().isEmpty() && !lokaltxt.getText().isEmpty() && !arrantxt.getText().isEmpty() && !Ettnavntxt.getText().isEmpty()) {
@@ -141,7 +142,7 @@ public class fx_contoller_billett implements Initializable {
                 int plass = Integer.parseInt(passtxt.getText());
                 int pr = Integer.parseInt(pristxt.getText());
                 int tel = Integer.parseInt(teletxt.getText());
-                Date dato = new SimpleDateFormat("dd.MM.yyyy").parse(datotxt.getText());
+                Date dato = new SimpleDateFormat("dd/MM/yyyy").parse(datotxt.getText());
                 Date klokke = new SimpleDateFormat("HH:MM").parse(kloktxt.getText());
                 e = new Billett(plass, navntxt.getText(), pr, tel, eposttxt.getText(), dato, klokke, lokaltxt.getText(), arrantxt.getText(), Ettnavntxt.getText());
                 liste.add(e);
@@ -184,8 +185,10 @@ public class fx_contoller_billett implements Initializable {
 
     @FXML
     void Registering_billetter_Action(ActionEvent event) {
-        if (!Bllett_view.getSelectionModel().isEmpty()) {
 
+        if (liste.isEmpty()) {
+            Billettlbl.setText("Tableview er tomt.. kunne ikke registere noe til file");
+        } else {
             String path = f.åpenfile();
             if (Radio_Csv.isSelected()) {
                 f.lagre_csv(liste, path);
@@ -203,13 +206,12 @@ public class fx_contoller_billett implements Initializable {
                 Billettlbl.setText("Velge hvor du skal lagre data ");
 
             }
-        } else {
-            Billettlbl.setText("Tableview er tomt.. kunne ikke registere noe til file");
-
         }
+
     }
 
-    @FXML  // for å slette data fra inputer
+
+@FXML  // for å slette data fra inputer
     void Avbryte_Action(ActionEvent event) {
         Stage stage = (Stage) Avbrytte_id.getScene().getWindow();
 
@@ -219,6 +221,7 @@ public class fx_contoller_billett implements Initializable {
     @FXML
     void open_File_Action(ActionEvent event) {
         String filepath = lese.åpe_file();
+         liste = FXCollections.observableArrayList();
         if (Radio_Csv.isSelected()) {
             lese.lese_file_csv(liste, filepath);
             Radio_jobj.setSelected(false);
@@ -237,8 +240,8 @@ public class fx_contoller_billett implements Initializable {
             Billettlbl.setText("Du kan endre på data ved å trykke på linje i tableview");
         } else if (Radio_jobj.isSelected()) {
 
-            ObservableList<Lokal> list = lese.lese_file(filepath);
-            Bllett_view.setItems(liste);
+            ObservableList<Billett> list = lese.lese_file(filepath);
+            Bllett_view.setItems(list);
             Navn_col.setCellValueFactory(new PropertyValueFactory<>("navn"));
             Etter_col.setCellValueFactory(new PropertyValueFactory<>("etternavn"));
             epost_col.setCellValueFactory(new PropertyValueFactory<>("epost"));
@@ -261,7 +264,7 @@ public class fx_contoller_billett implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+        public void initialize(URL url, ResourceBundle rb) {
         RadioController();
       
         Navn_col.setCellValueFactory(new PropertyValueFactory<>("navn"));

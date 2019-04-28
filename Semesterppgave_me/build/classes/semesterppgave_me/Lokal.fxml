@@ -44,11 +44,11 @@
                   <TextField fx:id="Antall_plasser" prefHeight="37.0" prefWidth="187.0" promptText="Antall plasser" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <Button fx:id="Lagre_lokal" layoutX="169.0" layoutY="423.0" mnemonicParsing="false" onAction="#Lagre_lokal_til_file_Action" prefHeight="40.0" prefWidth="136.0" text="Registere" />
-            <Button fx:id="closeButton" layoutX="368.0" layoutY="424.0" mnemonicParsing="false" onAction="#Avbrytte_lokal_Action" prefHeight="38.0" prefWidth="144.0" text="Avbrytte" />
-            <Label fx:id="lblLokal" layoutX="512.0" layoutY="456.0" prefHeight="92.0" prefWidth="394.0" textFill="#e80909" />
+            <Button fx:id="Lagre_lokal" layoutX="103.0" layoutY="423.0" mnemonicParsing="false" onAction="#Lagre_lokal_til_file_Action" prefHeight="40.0" prefWidth="136.0" text="Registere" />
+            <Button fx:id="closeButton" layoutX="265.0" layoutY="424.0" mnemonicParsing="false" onAction="#Avbrytte_lokal_Action" prefHeight="38.0" prefWidth="144.0" text="Avbrytte" />
+            <Label fx:id="lblLokal" layoutX="445.0" layoutY="358.0" prefHeight="131.0" prefWidth="426.0" textFill="#e80909" />
             <Button fx:id="legg_til_lokal" layoutX="551.0" layoutY="173.0" mnemonicParsing="false" onAction="#Legge_lokal_Action" prefHeight="30.0" prefWidth="91.0" text="legg til lokal" />
-            <Button fx:id="slette_lokal" layoutX="841.0" layoutY="405.0" mnemonicParsing="false" onAction="#Slette_lokal_Action" prefHeight="30.0" prefWidth="79.0" text="slette lokal" />
+            <Button fx:id="slette_lokal" layoutX="869.0" layoutY="405.0" mnemonicParsing="false" onAction="#Slette_lokal_Action" prefHeight="30.0" prefWidth="79.0" text="slette lokal" />
             <RadioButton fx:id="Radio_Csv" layoutX="573.0" layoutY="257.0" mnemonicParsing="false" onAction="#radioControll" prefHeight="17.0" prefWidth="87.0" text=" csv" />
             <RadioButton fx:id="Radio_jobj" layoutX="570.0" layoutY="308.0" mnemonicParsing="false" onAction="#radioControll" prefHeight="17.0" prefWidth="79.0" text="jobj" />
             <TableView fx:id="lokal_view" layoutX="696.0" layoutY="46.0" prefHeight="284.0" prefWidth="448.0">

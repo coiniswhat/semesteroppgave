@@ -8,8 +8,6 @@ package controller;
 import Filebehandler.Lagring;
 import Filebehandler.Lese_file;
 import Klasser_semesteroppgave.Arrangement;
-import Klasser_semesteroppgave.Lokal;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
@@ -33,6 +31,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.converter.DateStringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import validert.validation;
 
 public class FX_Arrangment_contoller implements Initializable {
 // lese file for å legge type,  kontakt person og sted i combobox
@@ -62,8 +61,7 @@ public class FX_Arrangment_contoller implements Initializable {
     public TextField sted_txt;
     @FXML
     public TextField kontaktPersontxt;
-    @FXML
-    public TextField arte;
+
     @FXML
     public Button Registrer_id;
     @FXML
@@ -91,7 +89,7 @@ public class FX_Arrangment_contoller implements Initializable {
     @FXML
     public TableColumn<Arrangement, String> Sted_v;
     @FXML
-    public TableColumn<Arrangement, Date> Tid;
+    public TableColumn<Arrangement, String> Tid;
     @FXML
     public TableColumn<Arrangement, String> Artist;
     @FXML
@@ -123,50 +121,89 @@ public class FX_Arrangment_contoller implements Initializable {
 
     }
 // her også vi må lagre mtoder for å kontrollere inputer.
+    // her er det mtoder for å kontrollere TEXTFIELD.
+
+    private Boolean ControllStringArrangement() {
+        return validation.textAlphabet(navn_på_arrangement, lblTxt_Arrangment, "Skriv bukstaver mellom a - z i Arrangement navn" + "\n");
+    }
+
+    private Boolean textDateTid() {
+        return validation.textDate(Tids_punkt, lblTxt_Arrangment, "Skriv dato format(dd/MM/yyyy)" + "\n");
+    }
+
+    private Boolean textNumericPris() {
+        return validation.textNumeric(Billett_pris, lblTxt_Arrangment, "Skriv tall mellom 0-9 i prisen til billet" + "\n");
+    }
+
+    private Boolean textAlphabetType() {
+        return validation.textAlphabet(ty_txt, lblTxt_Arrangment, "Skriv bukstaver mellom a - z i arrangement type" + "\n");
+    }
+
+    private Boolean textAlphabetSalg() {
+        return validation.textAlphabet(Billett_salg, lblTxt_Arrangment, "Skriv bukstaver mellom a - z i Billet salg" + "\n");
+    }
+
+    private Boolean textArrtist() {
+        return validation.textAlphabet(ArrtisterField, lblTxt_Arrangment, "Skriv bukstaver mellom a - z i artist" + "\n");
+    }
+
+    private Boolean textProgram() {
+        return validation.textAlphabet(Program, lblTxt_Arrangment, "Skriv bukstaver mellom a-z i program" + "\n");
+    }
+
+    private Boolean textAlphabetSted() {
+        return validation.textAlphabet(sted_txt, lblTxt_Arrangment, "Skriv bukstaver mellom a-z i sted" + "\n");
+    }
+
+    private Boolean textPerson() {
+        return validation.textAlphabet(kontaktPersontxt, lblTxt_Arrangment, "Skriv bukstaver mellom a - z i person navn" + "\n");
+    }
 
     @FXML
     public void Legg_Arrangement_Action(ActionEvent event
     ) throws ParseException {
-        if (!navn_på_arrangement.getText().isEmpty() && !sted_txt.getText().isEmpty() && !Tids_punkt.getText().isEmpty()
-                && !Billett_pris.getText().isEmpty() && !Billett_salg.getText().isEmpty() && !kontaktPersontxt.getText().isEmpty()
-                && !ty_txt.getText().isEmpty() && !ArrtisterField.getText().isEmpty() && !Program.getText().isEmpty()) {
-            if (Radio_jobj.isSelected() || Radio_Csv.isSelected()) {
-                int pris1 = Integer.parseInt(Billett_pris.getText());
-                // lage exception hvis man skrive forskjellige format
-                Date date = new SimpleDateFormat("dd.MM.yyyy").parse(Tids_punkt.getText());
-                String sted = sted_txt.getText();
-                String person = kontaktPersontxt.getText();
-                String type = ty_txt.getText();
+        if (ControllStringArrangement() && textDateTid() && textNumericPris()&& textAlphabetType() && textAlphabetSalg()
+                && textArrtist() && textProgram() && textAlphabetSted() && textPerson()) {
+            if (!navn_på_arrangement.getText().isEmpty() && !sted_txt.getText().isEmpty() && !Tids_punkt.getText().isEmpty()
+                    && !Billett_pris.getText().isEmpty() && !Billett_salg.getText().isEmpty() && !kontaktPersontxt.getText().isEmpty()
+                    && !ty_txt.getText().isEmpty() && !ArrtisterField.getText().isEmpty() && !Program.getText().isEmpty()) {
+                if (Radio_jobj.isSelected() || Radio_Csv.isSelected()) {
+                    int pris1 = Integer.parseInt(Billett_pris.getText());
+                    String sted = sted_txt.getText();
+                    String person = kontaktPersontxt.getText();
+                    String type = ty_txt.getText();
 
-                e = new Arrangement(person, navn_på_arrangement.getText(),
-                        date, type, ArrtisterField.getText(),
-                        Program.getText(), sted, pris1, Billett_salg.getText());
-                liste.add(e);
-                ArrtisterField.setText("");
-                Tids_punkt.setText("");
-                navn_på_arrangement.setText("");
-                Billett_pris.setText("");
-                Billett_salg.setText("");
-                Program.setText("");
-                ty_txt.setText("");
-                sted_txt.setText("");
-                kontaktPersontxt.setText("");
+                    e = new Arrangement(person, navn_på_arrangement.getText(),
+                           Tids_punkt.getText(), type, ArrtisterField.getText(),
+                            Program.getText(), sted, pris1, Billett_salg.getText());
+                    liste.add(e);
+                    ArrtisterField.setText("");
+                    Tids_punkt.setText("");
+                    navn_på_arrangement.setText("");
+                    Billett_pris.setText("");
+                    Billett_salg.setText("");
+                    Program.setText("");
+                    ty_txt.setText("");
+                    sted_txt.setText("");
+                    kontaktPersontxt.setText("");
+                } else {
+                    lblTxt_Arrangment.setText("Velge file dataformat");
+                    legg_id.setDisable(true);
+                }
+
             } else {
-                lblTxt_Arrangment.setText("Velge file dataformat");
+                lblTxt_Arrangment.setText("controller at du har fyllt alle datafeltene");
                 legg_id.setDisable(true);
+
             }
-
-        } else {
-            lblTxt_Arrangment.setText("controller at du har fyllt alle datafeltene");
-            legg_id.setDisable(true);
-
         }
-
     }
 
     @FXML // ferdig men trenges testing
     public void Arrangment_Action(ActionEvent event) throws IOException {
-        if (!Arrang_view.getSelectionModel().isEmpty()) {
+        if (liste.isEmpty()) {
+            lblTxt_Arrangment.setText("Tableview er tomt.. kunne ikke registere noe til file");
+        } else {
             String path = f.åpenfile();
             if (Radio_Csv.isSelected()) {
                 f.lagre_csv(liste, path);
@@ -184,8 +221,6 @@ public class FX_Arrangment_contoller implements Initializable {
                 lblTxt_Arrangment.setText("Velge hvor du skal lagre data ");
                 Registrer_id.setDisable(true);
             }
-        } else {
-            lblTxt_Arrangment.setText("Tableview er tomt.. kunne ikke registere noe til file");
 
         }
     }
@@ -213,12 +248,12 @@ public class FX_Arrangment_contoller implements Initializable {
     @FXML  // for å lese file og så endring på file
     public void Åpen_file_Action(ActionEvent event
     ) {
-       
+        liste = FXCollections.observableArrayList();
         String filepath = lese.åpe_file();
         if (Radio_Csv.isSelected()) {
             lese.lese_file_csv(liste, filepath);
             Radio_jobj.setSelected(false);
-             Arrang_view.setItems(liste);
+            Arrang_view.setItems(liste);
             Arrangement.setCellValueFactory(new PropertyValueFactory<>("navn_på_arrangement"));
             Sted_v.setCellValueFactory(new PropertyValueFactory<>("sted"));
             Tid.setCellValueFactory(new PropertyValueFactory<>("tidspunkt"));
@@ -228,13 +263,14 @@ public class FX_Arrangment_contoller implements Initializable {
             typecol.setCellValueFactory(new PropertyValueFactory<>("type"));
             pro.setCellValueFactory(new PropertyValueFactory<>("program_info"));
             pris.setCellValueFactory(new PropertyValueFactory<>("billett_pris"));
-           
-             lblTxt_Arrangment.setText("Du kan endre på data ved å trykke på linje i tableview");
-        }else if (Radio_jobj.isSelected()) {
-             ObservableList<Lokal> list = lese.lese_file(filepath);
-            
-               Arrang_view.setItems(liste);
-               Arrangement.setCellValueFactory(new PropertyValueFactory<>("navn_på_arrangement"));
+
+            lblTxt_Arrangment.setText("Du kan endre på data ved å trykke på linje i tableview");
+        }
+        else if (Radio_jobj.isSelected()) {
+             // lese file og legge den i liste til tableview 
+            ObservableList<Arrangement> list = lese.lese_file(filepath); 
+            Arrang_view.setItems(list);
+            Arrangement.setCellValueFactory(new PropertyValueFactory<>("navn_på_arrangement"));
             Sted_v.setCellValueFactory(new PropertyValueFactory<>("sted"));
             Tid.setCellValueFactory(new PropertyValueFactory<>("tidspunkt"));
             Artist.setCellValueFactory(new PropertyValueFactory<>("Artister"));
@@ -246,18 +282,18 @@ public class FX_Arrangment_contoller implements Initializable {
             Radio_Csv.setSelected(false);
             Registrer_id.setDisable(false);
             lblTxt_Arrangment.setText("Du kan endre på data ved å trykke på linje i tableview");
-        }else {
+        } else {
             lblTxt_Arrangment.setText("Velge datafelt til filen og prøv på nytt  ");
-            oppdater_id.setDisable(true);
+            
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb
     ) {
-      
+
         radioController();
-      
+
         Arrangement.setCellValueFactory(new PropertyValueFactory<>("navn_på_arrangement"));
         Sted_v.setCellValueFactory(new PropertyValueFactory<>("sted"));
         Tid.setCellValueFactory(new PropertyValueFactory<>("tidspunkt"));
@@ -267,7 +303,7 @@ public class FX_Arrangment_contoller implements Initializable {
         typecol.setCellValueFactory(new PropertyValueFactory<>("type"));
         pro.setCellValueFactory(new PropertyValueFactory<>("program_info"));
         pris.setCellValueFactory(new PropertyValueFactory<>("billett_pris"));
-        // brukern kan endre på data i tableview
+        // brukeren kan endre på data i tableview
         Arrang_view.setEditable(true);
         Arrangement.setCellFactory(TextFieldTableCell.forTableColumn());
         Arrangement.setOnEditCommit((TableColumn.CellEditEvent<Arrangement, String> t) -> {
@@ -283,8 +319,8 @@ public class FX_Arrangment_contoller implements Initializable {
                     .get(t.getTablePosition().getRow()))
                     .setSted(t.getNewValue());
         });
-        Tid.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
-        Tid.setOnEditCommit((TableColumn.CellEditEvent<Arrangement, Date> t) -> {
+        Tid.setCellFactory(TextFieldTableCell.forTableColumn());
+        Tid.setOnEditCommit((TableColumn.CellEditEvent<Arrangement, String> t) -> {
             ((Arrangement) t.getTableView()
                     .getItems()
                     .get(t.getTablePosition().getRow()))

@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -30,10 +32,19 @@ public class Lagring <T> extends lagring_til_file {
         Stage stage = new Stage();
         File file = fileChooser.showSaveDialog(stage);
         String path = file.getPath();
-
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Lagring.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return path;
         }
-
+//        long start = System.currentTimeMillis();
+//        try {
+//            Thread.sleep(8000);
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(Lagring.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
 
     // metode som lagrer data til en .csv   
@@ -44,7 +55,7 @@ public class Lagring <T> extends lagring_til_file {
             String data ="";
                for (int i = 0; i < liste.size(); i++) {
                   
-                    data += liste.get(i).toString() + ";";
+                    data += liste.get(i).toString();
                 }
             FileOutputStream fos = new FileOutputStream(filepath, true);
 

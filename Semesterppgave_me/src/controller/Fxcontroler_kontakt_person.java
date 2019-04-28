@@ -2,12 +2,10 @@ package controller;
 
 import Filebehandler.Lagring;
 import Filebehandler.Lese_file;
-import Klasser_semesteroppgave.Arrangement;
 import Klasser_semesteroppgave.Kontakt_person;
 import Klasser_semesteroppgave.Lokal;
-import java.io.File;
+import exception.Exceptiontxt;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,9 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -25,10 +21,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.converter.DateStringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import validert.validation;
 
 public class Fxcontroler_kontakt_person implements Initializable {
 
@@ -99,11 +94,43 @@ public class Fxcontroler_kontakt_person implements Initializable {
             Kontakt_personlbl.setText("");
         }
     }
+  private Boolean ControllStringKontaktPerson() {
+        return validation.textAlphabet(Kontakt_Person_navn, Kontakt_personlbl, "Skriv bukstaver mellom a - z i lokal navn" + "\n");
+    }
 
+    private Boolean textTele() {
+        return validation.textNumeric(Telefonnr, Kontakt_personlbl, "Skriv tall mellom 0-9 i telefonnr " + "\n");
+    }
+
+    private Boolean textEpost() {
+        return validation.emailFormat(E_posttxt, Kontakt_personlbl, "Skriv riktig format for epost" + "\n");
+    }
+
+    private Boolean textNettside() {
+        return validation.textNettside(nettside, Kontakt_personlbl, "Skriv bukstaver mellom (http://www.----.--) i nettside eller la den tomt" + "\n");
+    }
+
+    private Boolean textFirma() {
+        return validation.textAlphabet(Firmatxt, Kontakt_personlbl, "Skriv bukstaver mellom a - z i firma" + "\n");
+    }
+
+    private Boolean textOpplys() {
+        return validation.textAlphabet(mer_opplysningertxt, Kontakt_personlbl, "Skriv bukstaver mellom a - z i opplysninger" + "\n");
+    }
+
+
+    
+    
+    
     @FXML
     void Legge_person_ACTION(ActionEvent event) {
+           if ( !nettside.getText().isEmpty()  ){
+                 textNettside() ;
+             }
+        if (ControllStringKontaktPerson() &&textTele() &&textEpost() && textFirma() && textOpplys() ){
         if (!Kontakt_Person_navn.getText().isEmpty() && !Telefonnr.getText().isEmpty() && !E_posttxt.getText().isEmpty()
-                && !nettside.getText().isEmpty() && !Firmatxt.getText().isEmpty() && !mer_opplysningertxt.getText().isEmpty()) {
+               && !Firmatxt.getText().isEmpty() && !mer_opplysningertxt.getText().isEmpty()) {
+          
             if (Radio_jobj.isSelected() || Radio_Csv.isSelected()) {
                 int tele = Integer.parseInt(Telefonnr.getText());
                 e = new Kontakt_person(nettside.getText(), Firmatxt.getText(),
@@ -119,19 +146,22 @@ public class Fxcontroler_kontakt_person implements Initializable {
 
             } else {
                 Kontakt_personlbl.setText("Velge file dataformat");
-                
+
             }
         } else {
             Kontakt_personlbl.setText("controllere at du har fyllt alle datafeltene");
-          
 
+        }
         }
     }
 
     @FXML
     void Register_PERSON_ACTION(ActionEvent event) {
-        if (!Person_view.getSelectionModel().isEmpty()) {
+        if (liste.isEmpty()) {
+            Kontakt_personlbl.setText("Tableview er tomt.. kunne ikke registere noe til file");
+        } else {
             String path = f.åpenfile();
+
             if (Radio_Csv.isSelected()) {
                 f.lagre_csv(liste, path);
                 Radio_jobj.setSelected(false);
@@ -148,9 +178,6 @@ public class Fxcontroler_kontakt_person implements Initializable {
                 Kontakt_personlbl.setText("Velge hvor du skal lagre data ");
 
             }
-        } else {
-            Kontakt_personlbl.setText("Tableview er tomt.. kunne ikke registere noe til file");
-
         }
     }
 
@@ -176,8 +203,9 @@ public class Fxcontroler_kontakt_person implements Initializable {
     @FXML
     void Åpenfile_ACTION(ActionEvent event) {
         String filepath = lese.åpe_file();
+        liste = FXCollections.observableArrayList();
         //lese file som har 
-        if (Radio_jobj.isSelected()) {
+        if (Radio_Csv.isSelected()) {
             lese.lese_file_csv(liste, filepath);
             Radio_jobj.setSelected(false);
             Navn_v.setCellValueFactory(new PropertyValueFactory<>("navn"));
@@ -188,10 +216,10 @@ public class Fxcontroler_kontakt_person implements Initializable {
             opplysninger.setCellValueFactory(new PropertyValueFactory<>("mer_opplysning"));
             Person_view.setItems(liste);
             Kontakt_personlbl.setText("Du kan endre på data ved å trykke på linje i tableview");
-            
+
         } else if (Radio_jobj.isSelected()) {
-            ObservableList<Lokal> list = lese.lese_file(filepath);
-            Person_view.setItems(liste);
+            ObservableList<Kontakt_person> list = lese.lese_file(filepath);
+            Person_view.setItems(list);
             Navn_v.setCellValueFactory(new PropertyValueFactory<>("navn"));
             Telefonner.setCellValueFactory(new PropertyValueFactory<>("telfonnummer"));
             E_post.setCellValueFactory(new PropertyValueFactory<>("epost"));
@@ -199,15 +227,15 @@ public class Fxcontroler_kontakt_person implements Initializable {
             Firma.setCellValueFactory(new PropertyValueFactory<>("firma"));
             opplysninger.setCellValueFactory(new PropertyValueFactory<>("mer_opplysning"));
             Radio_Csv.setSelected(false);
-           
+
             Kontakt_personlbl.setText("Du kan endre på data ved å trykke på linje i tableview");
-        }else{
-             Kontakt_personlbl.setText("Velge datafelt til filen og prøv på nytt  "+"\n");
+        } else {
+            Kontakt_personlbl.setText("Velge datafelt til filen og prøv på nytt  " + "\n");
         }
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)  {
         // TODO
         radioController();
         if (!Person_view.getSelectionModel().isEmpty()) {
@@ -219,6 +247,7 @@ public class Fxcontroler_kontakt_person implements Initializable {
         nettside_v.setCellValueFactory(new PropertyValueFactory<>("nettside"));
         Firma.setCellValueFactory(new PropertyValueFactory<>("firma"));
         opplysninger.setCellValueFactory(new PropertyValueFactory<>("mer_opplysning"));
+       
         Person_view.setEditable(true);
         Navn_v.setCellFactory(TextFieldTableCell.forTableColumn());
         Navn_v.setOnEditCommit((TableColumn.CellEditEvent<Kontakt_person, String> t) -> {
@@ -227,6 +256,7 @@ public class Fxcontroler_kontakt_person implements Initializable {
                     .get(t.getTablePosition().getRow()))
                     .setNavn(t.getNewValue());
         });
+       
 
         E_post.setCellFactory(TextFieldTableCell.forTableColumn());
         E_post.setOnEditCommit((TableColumn.CellEditEvent<Kontakt_person, String> t) -> {

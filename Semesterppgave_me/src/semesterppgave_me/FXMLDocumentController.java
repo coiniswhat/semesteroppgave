@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 
 public class FXMLDocumentController implements Initializable {
 
-    Lagring f = new Lagring();
+  
     @FXML
     public Label Registerng;
 
@@ -32,7 +32,7 @@ public class FXMLDocumentController implements Initializable {
         Parent root8 = (Parent) fxmlLoader8.load();
         Stage stage8 = new Stage();
         stage8.setScene(new Scene(root8));
-       stage8.initOwner(Registerng.getScene().getWindow());
+        stage8.initOwner(Registerng.getScene().getWindow());
         stage8.initModality(Modality.WINDOW_MODAL);
         stage8.showAndWait();
     }
@@ -47,9 +47,6 @@ public class FXMLDocumentController implements Initializable {
         stage7.initModality(Modality.WINDOW_MODAL);
         stage7.showAndWait();
     }
-
-
-
 
     @FXML
     void Regstering_Kontakt_personer_Action(ActionEvent event) throws IOException {
